@@ -32,7 +32,7 @@
       (start-process "*Messages*" nil "afplay" (format "%sselectric-type.wav"
                                                        selectric-files-path))
       (start-process "*Messages*" nil "aplay" (format "%sselectric-type.wav"
-                                                       selectric-files-path)))
+                                                       selectric-files-path))))
 
 (define-minor-mode selectric-mode
   "Toggle Selectric mode.
