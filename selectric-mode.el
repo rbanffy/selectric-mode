@@ -28,10 +28,11 @@
 (defconst selectric-files-path (file-name-directory load-file-name))
 
 (defun selectric-type-sound ()
-  ;; (message (format "aplay %sselectric-type.wav"
-  ;;                           load-file-name)))
-  (start-process "*Messages*" nil "aplay" (format "%sselectric-type.wav"
-                                                  selectric-files-path)))
+  (if (eq system-type 'darwin)
+      (start-process "*Messages*" nil "afplay" (format "%sselectric-type.wav"
+                                                       selectric-files-path))
+      (start-process "*Messages*" nil "aplay" (format "%sselectric-type.wav"
+                                                       selectric-files-path)))
 
 (define-minor-mode selectric-mode
   "Toggle Selectric mode.
