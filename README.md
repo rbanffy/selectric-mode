@@ -10,7 +10,7 @@ Creative Commons license.
 
 To install it, simply add it to your load-path, require it:
 
-```lisp
+```Emacs Lisp
 (add-to-list 'load-path "~/.emacs.d/plugins/selectric-mode")
 (require 'selectric-mode)
 ```
