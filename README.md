@@ -7,3 +7,14 @@ The sound of the typewriter was recorded by a person nicknamed
 "secretmojo" and is available on
 https://www.freesound.org/people/secretmojo/sounds/224012/ under a
 Creative Commons license.
+
+To install it, simply add it to your load-path, require it:
+
+```lisp
+(add-to-list 'load-path "~/.emacs.d/plugins/selectric-mode")
+(require 'selectric-mode)
+```
+
+And then activate/deactivate with M-x `selectric-mode`. When it's
+activated, you'll hear a typing sound for confirmation. When it
+deactivates, you'll hear a carriage movement sound instead.

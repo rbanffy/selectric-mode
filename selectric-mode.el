@@ -34,6 +34,13 @@
       (start-process "*Messages*" nil "aplay" (format "%sselectric-type.wav"
                                                        selectric-files-path))))
 
+(defun selectric-move-sound ()
+  (if (eq system-type 'darwin)
+      (start-process "*Messages*" nil "afplay" (format "%sselectric-move.wav"
+                                                       selectric-files-path))
+      (start-process "*Messages*" nil "aplay" (format "%sselectric-move.wav"
+                                                       selectric-files-path))))
+
 (define-minor-mode selectric-mode
   "Toggle Selectric mode.
 Interactively with no argument, this command toggles the mode.
@@ -51,8 +58,12 @@ Selectric typewriter."
   :group 'selectric
 
   (if selectric-mode
-      (add-hook 'post-self-insert-hook 'selectric-type-sound)
-    (remove-hook 'post-self-insert-hook 'selectric-type-sound))
+      (progn
+        (add-hook 'post-self-insert-hook 'selectric-type-sound)
+        (selectric-type-sound))
+      (progn
+        (remove-hook 'post-self-insert-hook 'selectric-type-sound)
+        (selectric-move-sound)))
   )
 
 (provide 'selectric-mode)
