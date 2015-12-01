@@ -34,6 +34,7 @@
       (start-process "*Messages*" nil "aplay" (format "%sselectric-type.wav"
                                                        selectric-files-path))))
 
+;;;###autoload
 (define-minor-mode selectric-mode
   "Toggle Selectric mode.
 Interactively with no argument, this command toggles the mode.
