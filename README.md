@@ -21,3 +21,8 @@ To install it, simply add it to your load-path, require it:
 And then activate/deactivate with M-x `selectric-mode`. When it's
 activated, you'll hear a typing sound for confirmation. When it
 deactivates, you'll hear a carriage movement sound instead.
+
+Alternatively, you can install it from [MELPA](https://melpa.org).
+
+![selectric-mode on MELPA]
+(https://raw.githubusercontent.com/wiki/rbanffy/selectric-mode/melpa.png)
