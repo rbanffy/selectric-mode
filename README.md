@@ -1,7 +1,10 @@
 # selectric-mode
 
 [![MELPA](https://melpa.org/packages/selectric-mode-badge.svg)]
-(https://melpa.org/#/selectric-mode)
+(https://melpa.org/#/selectric-mode) [![MELPA Stable]
+(https://stable.melpa.org/packages/selectric-mode-badge.svg)]
+(https://stable.melpa.org/#/selectric-mode)
+
 
 Make your Emacs sound like a proper typewriter. Extremely useful if you
 have a puny, silent, rubberish, non-clicky keyboard.
