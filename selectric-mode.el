@@ -28,6 +28,7 @@
 (defconst selectric-files-path (file-name-directory load-file-name))
 
 (defun selectric-type-sound ()
+  "Printing element hitting the paper sound."
   (if (eq system-type 'darwin)
       (start-process "*Messages*" nil "afplay" (format "%sselectric-type.wav"
                                                        selectric-files-path))
@@ -35,6 +36,7 @@
                                                        selectric-files-path))))
 
 (defun selectric-move-sound ()
+  "Carriage movement sound."
   (if (eq system-type 'darwin)
       (start-process "*Messages*" nil "afplay" (format "%sselectric-move.wav"
                                                        selectric-files-path))
