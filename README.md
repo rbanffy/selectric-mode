@@ -11,8 +11,9 @@ have a puny, silent, rubberish, non-clicky keyboard.
 
 The sound of the typewriter was recorded by a person nicknamed
 "secretmojo" and is available on
-https://www.freesound.org/people/secretmojo/sounds/224012/ under a
-Creative Commons license.
+https://www.freesound.org/people/secretmojo/sounds/224012/ and the bell
+was extracted from https://freesound.org/people/knufds/sounds/345955/,
+recorded by "knufds", both available under a Creative Commons license.
 
 To install it, simply add it to your load-path, require it:
 
