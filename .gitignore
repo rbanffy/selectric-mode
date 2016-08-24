@@ -3,3 +3,6 @@
 
 # Packaging
 .cask
+
+# macOS
+.DS_Store

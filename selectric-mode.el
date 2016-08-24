@@ -47,7 +47,6 @@
       (make-sound (format "%sselectric-move.wav" selectric-files-path))
       (make-sound (format "%sselectric-move.wav" selectric-files-path))))
 
-
 ;;;###autoload
 (define-minor-mode selectric-mode
   "Toggle Selectric mode.
