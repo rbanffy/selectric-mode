@@ -27,27 +27,32 @@
 
 (defconst selectric-files-path (file-name-directory load-file-name))
 
+(defun make-sound (sound-file-name)
+  "Play sound from file SOUND-FILE-NAME using platform-appropriate program."
+  (if (eq system-type 'darwin)
+      (start-process "*Messages*" nil "afplay" sound-file-name)
+      (start-process "*Messages*" nil "aplay" sound-file-name)))
+
 (defun selectric-type-sound ()
   "Printing element hitting the paper sound."
   (if (eq system-type 'darwin)
-      (start-process "*Messages*" nil "afplay" (format "%sselectric-type.wav"
-                                                       selectric-files-path))
-      (start-process "*Messages*" nil "aplay" (format "%sselectric-type.wav"
-                                                       selectric-files-path))))
+      (make-sound (format "%sselectric-type.wav" selectric-files-path))
+      (make-sound (format "%sselectric-type.wav" selectric-files-path)))
+  (if (= (current-column) (current-fill-column))
+      (make-sound (format "%sping.wav" selectric-files-path))))
 
 (defun selectric-move-sound ()
   "Carriage movement sound."
-  (if (eq system-type 'darwin)
-      (start-process "*Messages*" nil "afplay" (format "%sselectric-move.wav"
-                                                       selectric-files-path))
-      (start-process "*Messages*" nil "aplay" (format "%sselectric-move.wav"
-                                                       selectric-files-path))))
+    (if (eq system-type 'darwin)
+      (make-sound (format "%sselectric-move.wav" selectric-files-path))
+      (make-sound (format "%sselectric-move.wav" selectric-files-path))))
+
 
 ;;;###autoload
 (define-minor-mode selectric-mode
   "Toggle Selectric mode.
-Interactively with no argument, this command toggles the mode.
-A positive prefix argument enables the mode, any other prefix
+Interactively with no argument, this command toggles the mode.  A
+positive prefix argument enables the mode, any other prefix
 argument disables it.  From Lisp, argument omitted or nil enables
 the mode, `toggle' toggles the state.
 
