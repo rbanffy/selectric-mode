@@ -59,9 +59,10 @@
   "Printing element hitting the paper sound."
   (if (eq system-type 'darwin)
       (make-sound (format "%sselectric-type.wav" selectric-files-path))
-    (make-sound (format "%sselectric-type.wav" selectric-files-path)))
-  (if (= (current-column) (current-fill-column))
-      (make-sound (format "%sping.wav" selectric-files-path))))
+      (make-sound (format "%sselectric-type.wav" selectric-files-path)))
+  (unless (minibufferp)
+    (if (= (current-column) (current-fill-column))
+        (make-sound (format "%sping.wav" selectric-files-path)))))
 
 (defun selectric-move-sound ()
   "Carriage movement sound."
