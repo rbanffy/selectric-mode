@@ -27,25 +27,47 @@
 
 (defconst selectric-files-path (file-name-directory load-file-name))
 
+(defvar selectric-mode-map (make-sparse-keymap) "Selectric mode's keymap.")
+
+(defvar selectric-affected-bindings-list
+  '(("DEL")))
+
+(defun selectric-current-key-binding (key)
+  "Look up the current binding for KEY without selectric-mode."
+  (prog2 (selectric-mode -1) (key-binding (kbd key)) (selectric-mode +1)))
+
+(defun selectric-rebind (key)
+  (lambda ()
+    (interactive)
+    (let ((current-binding (selectric-current-key-binding key)))
+      (progn
+        (selectric-move-sound)
+        (call-interactively current-binding)))))
+
+(dolist (cell selectric-affected-bindings-list)
+  (let ((key (car cell)))
+    (define-key selectric-mode-map
+      (read-kbd-macro (car cell)) (selectric-rebind key))))
+
 (defun make-sound (sound-file-name)
   "Play sound from file SOUND-FILE-NAME using platform-appropriate program."
   (if (eq system-type 'darwin)
       (start-process "*Messages*" nil "afplay" sound-file-name)
-      (start-process "*Messages*" nil "aplay" sound-file-name)))
+    (start-process "*Messages*" nil "aplay" sound-file-name)))
 
 (defun selectric-type-sound ()
   "Printing element hitting the paper sound."
   (if (eq system-type 'darwin)
       (make-sound (format "%sselectric-type.wav" selectric-files-path))
-      (make-sound (format "%sselectric-type.wav" selectric-files-path)))
+    (make-sound (format "%sselectric-type.wav" selectric-files-path)))
   (if (= (current-column) (current-fill-column))
       (make-sound (format "%sping.wav" selectric-files-path))))
 
 (defun selectric-move-sound ()
   "Carriage movement sound."
-    (if (eq system-type 'darwin)
+  (if (eq system-type 'darwin)
       (make-sound (format "%sselectric-move.wav" selectric-files-path))
-      (make-sound (format "%sselectric-move.wav" selectric-files-path))))
+    (make-sound (format "%sselectric-move.wav" selectric-files-path))))
 
 ;;;###autoload
 (define-minor-mode selectric-mode
@@ -63,14 +85,15 @@ Selectric typewriter."
   ;; The indicator for the mode line.
   :lighter " Selectric"
   :group 'selectric
+  :keymap selectric-mode-map
 
   (if selectric-mode
       (progn
         (add-hook 'post-self-insert-hook 'selectric-type-sound)
         (selectric-type-sound))
-      (progn
-        (remove-hook 'post-self-insert-hook 'selectric-type-sound)
-        (selectric-move-sound)))
+    (progn
+      (remove-hook 'post-self-insert-hook 'selectric-type-sound)
+      (selectric-move-sound)))
   )
 
 (provide 'selectric-mode)
