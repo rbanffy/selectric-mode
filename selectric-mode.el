@@ -36,7 +36,7 @@
   "Look up the current binding for KEY without selectric-mode."
   (prog2 (selectric-mode -1) (key-binding (kbd key)) (selectric-mode +1)))
 
-(defun selectric-rebind (key)
+(defun selectric-rebind (key) "Bind the key KEY."
   (lambda ()
     (interactive)
     (let ((current-binding (selectric-current-key-binding key)))
