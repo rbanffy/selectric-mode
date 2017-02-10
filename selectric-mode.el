@@ -32,39 +32,38 @@
 (defvar selectric-affected-bindings-list
   '(("RET") ("<UP>") ("<DOWN>") ("<RIGHT>") ("<LEFT>") ("DEL")))
 
-(defun selectric-current-key-binding (key)
-  "Look up the current binding for KEY without selectric-mode."
-  (prog2
-      (selectric-mode -1)
-      (key-binding (kbd key))  ; This is returned
-    (selectric-mode +1)
-    )
-  )
+;; (defun selectric-current-key-binding (key)
+;;   "Look up the current binding for KEY without selectric-mode."
+;;   (prog2
+;;       (selectric-mode -1)
+;;       (key-binding (kbd key))  ; This is returned
+;;     (selectric-mode +1)
+;;     )
+;;   )
 
-(defun selectric-rebind (key)
-  "Make a carriage move sound, then make what KEY originally did."
-  (lambda ()
-    (interactive)
-    (let ((current-binding (selectric-current-key-binding key)))
-      (progn
-        (selectric-move-sound)
-        (message "moved")
-        (call-interactively current-binding))
-      )
-    )
-  )
+;; (defun selectric-rebind (key)
+;;   "Make a carriage move sound, then make what KEY originally did."
+;;   (lambda ()
+;;     (interactive)
+;;     (let ((current-binding (selectric-current-key-binding key)))
+;;       (progn
+;;         (selectric-move-sound)
+;;         (message "moved")
+;;         (call-interactively current-binding))
+;;       )
+;;     )
+;;   )
 
 
-(dolist (cell selectric-affected-bindings-list)
-  (let ((key (car cell)))
-    (progn
-      (message key)
-      (define-key selectric-mode-map
-        (read-kbd-macro (car cell))
-        (selectric-rebind key))
-      )
-    )
-  )
+;; (dolist (cell selectric-affected-bindings-list)
+;;   (let ((key (car cell)))
+;;     (progn
+;;       (define-key selectric-mode-map
+;;         (read-kbd-macro (car cell))
+;;         (selectric-rebind key))
+;;       )
+;;     )
+;;   )
 
 ; Manually force DEL to make a sound.
 (define-key selectric-mode-map (kbd "DEL")
