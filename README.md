@@ -26,7 +26,8 @@ And then activate/deactivate with M-x `selectric-mode`. When it's
 activated, you'll hear a typing sound for confirmation. When it
 deactivates, you'll hear a carriage movement sound instead.
 
-Alternatively, you can install it from [MELPA](https://melpa.org).
+Alternatively, you can install it from [MELPA](https://melpa.org).To
+install it, type <kbd>M-x package-install [ret] selectric-mode</kbd>
 
 ![selectric-mode on MELPA]
 (https://raw.githubusercontent.com/wiki/rbanffy/selectric-mode/melpa.png)

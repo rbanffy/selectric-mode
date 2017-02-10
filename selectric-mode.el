@@ -92,6 +92,7 @@ Selectric typewriter."
   (if selectric-mode
       (progn
         (add-hook 'post-self-insert-hook 'selectric-type-sound)
+        ; (global-set-key [left] (noisy-move 'left-char))
         (selectric-type-sound))
     (progn
       (remove-hook 'post-self-insert-hook 'selectric-type-sound)
