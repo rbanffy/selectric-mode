@@ -34,42 +34,71 @@
 
 (defun selectric-current-key-binding (key)
   "Look up the current binding for KEY without selectric-mode."
-  (prog2 (selectric-mode -1) (key-binding (kbd key)) (selectric-mode +1)))
+  (prog2
+      (selectric-mode -1)
+      (key-binding (kbd key))  ; This is returned
+    (selectric-mode +1)
+    )
+  )
 
 (defun selectric-rebind (key)
-  "Do something with KEY."
+  "Make a carriage move sound, then make what KEY originally did."
   (lambda ()
     (interactive)
     (let ((current-binding (selectric-current-key-binding key)))
       (progn
         (selectric-move-sound)
         (message "moved")
-        (call-interactively current-binding)))))
+        (call-interactively current-binding))
+      )
+    )
+  )
+
 
 (dolist (cell selectric-affected-bindings-list)
   (let ((key (car cell)))
     (progn
       (message key)
-    (define-key selectric-mode-map
-      (read-kbd-macro (car cell)) (selectric-rebind key)))))
+      (define-key selectric-mode-map
+        (read-kbd-macro (car cell))
+        (selectric-rebind key))
+      )
+    )
+  )
 
-(defun make-sound (sound-file-name)
+; Manually force DEL to make a sound.
+(define-key selectric-mode-map (kbd "DEL")
+  (lambda ()
+    (interactive)
+    (progn
+      (selectric-move-sound)
+      (backward-delete-char-untabify 1))))
+
+; Manually force DELETE to make a sound.  Should also do it for C-d.
+(define-key selectric-mode-map (kbd "<deletechar>")
+  (lambda ()
+    (interactive)
+    (progn
+      (selectric-move-sound)
+      (delete-char 1))))
+
+(defun selectric-make-sound (sound-file-name)
   "Play sound from file SOUND-FILE-NAME using platform-appropriate program."
   (if (eq system-type 'darwin)
       (start-process "*Messages*" nil "afplay" sound-file-name)
     (start-process "*Messages*" nil "aplay" sound-file-name)))
 
 (defun selectric-type-sound ()
-  "Printing element hitting the paper sound."
+  "Make the sound of the printing element hitting the paper."
   (progn
-    (make-sound (format "%sselectric-type.wav" selectric-files-path))
+    (selectric-make-sound (format "%sselectric-type.wav" selectric-files-path))
     (unless (minibufferp)
       (if (= (current-column) (current-fill-column))
-            (make-sound (format "%sping.wav" selectric-files-path))))))
+            (selectric-make-sound (format "%sping.wav" selectric-files-path))))))
 
 (defun selectric-move-sound ()
   "Carriage movement sound."
-  (make-sound (format "%sselectric-move.wav" selectric-files-path)))
+  (selectric-make-sound (format "%sselectric-move.wav" selectric-files-path)))
 
 ;;;###autoload
 (define-minor-mode selectric-mode
