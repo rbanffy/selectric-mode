@@ -4,7 +4,7 @@
 ;; Maintainer: Ricardo Banffy <rbanffy@gmail.com>
 ;; URL: https://github.com/rbanffy/green-screen-emacs
 ;; Keywords: multimedia, convenience, typewriter, selectric
-;; Version: 1.3
+;; Version: 1.3.1
 
 ;; Copyright (C) 2015-2017  Ricardo Bánffy
 
