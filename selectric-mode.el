@@ -4,7 +4,7 @@
 ;; Maintainer: Ricardo Banffy <rbanffy@gmail.com>
 ;; URL: https://github.com/rbanffy/green-screen-emacs
 ;; Keywords: multimedia, convenience, typewriter, selectric
-;; Version: 1.0.0a
+;; Version: 1.1.0
 
 ;; Copyright (C) 2015-2017  Ricardo Bánffy
 
@@ -32,21 +32,17 @@
 
 (defvar selectric-mode-map (make-sparse-keymap) "Selectric mode's keymap.")
 
-; Manually force DEL to make a sound.
-(define-key selectric-mode-map (kbd "DEL")
-  (lambda ()
-    (interactive)
-    (progn
-      (selectric-move-sound)
-      (backward-delete-char-untabify 1))))
+(defvar selectric-affected-bindings-list
+  '("<up>" "<down>" "<right>" "<left>" "DEL" "C-d")
+  "The keys we'll override.")
 
-; Manually force DELETE to make a sound.  Should also do it for C-d.
-(define-key selectric-mode-map (kbd "<deletechar>")
-  (lambda ()
-    (interactive)
-    (progn
-      (selectric-move-sound)
-      (delete-char 1))))
+(defvar selectric-saved-bindings (make-hash-table :test 'equal)
+  "The hash map where we'll save the key bindings.")
+
+(defun selectric-save-bindings (keys hashmap)
+  "Save the key-bindings of the keys in KEYS into HASHMAP."
+  (dolist (key keys)
+    (puthash key (key-binding (kbd key)) hashmap)))
 
 (defun selectric-make-sound (sound-file-name)
   "Play sound from file SOUND-FILE-NAME using platform-appropriate program."
@@ -60,10 +56,10 @@
     (selectric-make-sound (format "%sselectric-type.wav" selectric-files-path))
     (unless (minibufferp)
       (if (= (current-column) (current-fill-column))
-            (selectric-make-sound (format "%sping.wav" selectric-files-path))))))
+          (selectric-make-sound (format "%sping.wav" selectric-files-path))))))
 
 (defun selectric-move-sound ()
-  "Carriage movement sound."
+  "Make the carriage movement sound."
   (selectric-make-sound (format "%sselectric-move.wav" selectric-files-path)))
 
 ;;;###autoload
@@ -86,10 +82,24 @@ Selectric typewriter."
 
   (if selectric-mode
       (progn
+        ; Save the current bindings into a map
+        (selectric-save-bindings
+         selectric-affected-bindings-list selectric-saved-bindings)
+
+        ; Override the key bindings
+        (dolist (key selectric-affected-bindings-list)
+          (define-key selectric-mode-map (kbd key)
+            (lambda ()
+              (interactive)
+              (prog2
+                (selectric-move-sound)
+                (call-interactively (gethash key selectric-saved-bindings))))))
+
         (add-hook 'post-self-insert-hook 'selectric-type-sound)
         ; (global-set-key [left] (noisy-move 'left-char))
         (selectric-type-sound))
     (progn
+      ; Whem we exit the mode, the original map is restored.
       (remove-hook 'post-self-insert-hook 'selectric-type-sound)
       (selectric-move-sound)))
   )
