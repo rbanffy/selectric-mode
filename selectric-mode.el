@@ -1,9 +1,12 @@
 ;;; selectric-mode.el --- IBM Selectric mode for Emacs  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2015  Ricardo Bánffy
-
 ;; Author: Ricardo Bánffy <rbanffy@gmail.com>
+;; Maintainer: Ricardo Banffy <rbanffy@gmail.com>
+;; URL: https://github.com/rbanffy/green-screen-emacs
 ;; Keywords: multimedia, convenience, typewriter, selectric
+;; Version: 1.0.0a
+
+;; Copyright (C) 2015-2017  Ricardo Bánffy
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -28,42 +31,6 @@
 (defconst selectric-files-path (file-name-directory load-file-name))
 
 (defvar selectric-mode-map (make-sparse-keymap) "Selectric mode's keymap.")
-
-(defvar selectric-affected-bindings-list
-  '(("RET") ("<UP>") ("<DOWN>") ("<RIGHT>") ("<LEFT>") ("DEL")))
-
-;; (defun selectric-current-key-binding (key)
-;;   "Look up the current binding for KEY without selectric-mode."
-;;   (prog2
-;;       (selectric-mode -1)
-;;       (key-binding (kbd key))  ; This is returned
-;;     (selectric-mode +1)
-;;     )
-;;   )
-
-;; (defun selectric-rebind (key)
-;;   "Make a carriage move sound, then make what KEY originally did."
-;;   (lambda ()
-;;     (interactive)
-;;     (let ((current-binding (selectric-current-key-binding key)))
-;;       (progn
-;;         (selectric-move-sound)
-;;         (message "moved")
-;;         (call-interactively current-binding))
-;;       )
-;;     )
-;;   )
-
-
-;; (dolist (cell selectric-affected-bindings-list)
-;;   (let ((key (car cell)))
-;;     (progn
-;;       (define-key selectric-mode-map
-;;         (read-kbd-macro (car cell))
-;;         (selectric-rebind key))
-;;       )
-;;     )
-;;   )
 
 ; Manually force DEL to make a sound.
 (define-key selectric-mode-map (kbd "DEL")
