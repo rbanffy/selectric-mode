@@ -5,6 +5,9 @@
 (https://stable.melpa.org/packages/selectric-mode-badge.svg)]
 (https://stable.melpa.org/#/selectric-mode)
 
+[![IBM Selectric](https://upload.wikimedia.org/wikipedia/commons/9/9f/IBM_Selectric.jpg)](https://en.wikipedia.org/wiki/IBM_Selectric_typewriter#/media/File:IBM_Selectric.jpg)
+
+*Photo By Oliver Kurmis - Self-photographed, CC BY 2.5, https://commons.wikimedia.org/w/index.php?curid=104015*
 
 Make your Emacs sound like a proper typewriter. Extremely useful if you
 have a puny, silent, rubberish, non-clicky keyboard.
