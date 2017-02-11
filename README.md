@@ -1,5 +1,9 @@
 # selectric-mode
 
+[![IBM Selectric](https://upload.wikimedia.org/wikipedia/commons/9/9f/IBM_Selectric.jpg)](https://en.wikipedia.org/wiki/IBM_Selectric_typewriter#/media/File:IBM_Selectric.jpg)
+
+*Photo By Oliver Kurmis - Self-photographed, CC BY 2.5, https://commons.wikimedia.org/w/index.php?curid=104015*
+
 [![MELPA](https://melpa.org/packages/selectric-mode-badge.svg)]
 (https://melpa.org/#/selectric-mode) [![MELPA Stable]
 (https://stable.melpa.org/packages/selectric-mode-badge.svg)]
