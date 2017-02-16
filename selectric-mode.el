@@ -4,7 +4,7 @@
 ;; Maintainer: Ricardo Banffy <rbanffy@gmail.com>
 ;; URL: https://github.com/rbanffy/selectric-mode
 ;; Keywords: multimedia, convenience, typewriter, selectric
-;; Version: 1.3.2
+;; Version: 1.4.1
 
 ;; Copyright (C) 2015-2017  Ricardo Bánffy
 
