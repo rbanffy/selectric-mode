@@ -1,11 +1,9 @@
 # selectric-mode
 
-[![MELPA](https://melpa.org/packages/selectric-mode-badge.svg)]
-(https://melpa.org/#/selectric-mode) [![MELPA Stable]
-(https://stable.melpa.org/packages/selectric-mode-badge.svg)]
-(https://stable.melpa.org/#/selectric-mode)
+![MELPA](https://melpa.org/packages/selectric-mode-badge.svg)
+![MELPA Stable](https://stable.melpa.org/packages/selectric-mode-badge.svg)
 
-[![IBM Selectric](https://upload.wikimedia.org/wikipedia/commons/9/9f/IBM_Selectric.jpg)](https://en.wikipedia.org/wiki/IBM_Selectric_typewriter#/media/File:IBM_Selectric.jpg)
+![IBM Selectric](https://upload.wikimedia.org/wikipedia/commons/9/9f/IBM_Selectric.jpg)
 
 *Photo By Oliver Kurmis - Self-photographed, CC BY 2.5, https://commons.wikimedia.org/w/index.php?curid=104015*
 
@@ -32,5 +30,4 @@ deactivates, you'll hear a carriage movement sound instead.
 Alternatively, you can install it from [MELPA](https://melpa.org).To
 install it, type <kbd>M-x package-install [ret] selectric-mode</kbd>
 
-![selectric-mode on MELPA]
-(https://raw.githubusercontent.com/wiki/rbanffy/selectric-mode/melpa.png)
+![selectric-mode on MELPA](https://raw.githubusercontent.com/wiki/rbanffy/selectric-mode/melpa.png)
