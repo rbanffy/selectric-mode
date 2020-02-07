@@ -42,7 +42,7 @@
 (defun selectric-save-bindings (keys hashmap)
   "Save the key-bindings of the keys in KEYS into HASHMAP."
   (dolist (key keys)
-    (puthash key (key-binding (kbd key)) hashmap)))
+    (puthash key (global-key-binding (kbd key)) hashmap)))
 
 (defun selectric-make-sound (sound-file-name)
   "Play sound from file SOUND-FILE-NAME using platform-appropriate program."
