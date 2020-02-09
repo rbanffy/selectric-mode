@@ -4,9 +4,9 @@
 ;; Maintainer: Ricardo Banffy <rbanffy@gmail.com>
 ;; URL: https://github.com/rbanffy/selectric-mode
 ;; Keywords: multimedia, convenience, typewriter, selectric
-;; Version: 1.4.1
+;; Version: 1.4.2
 
-;; Copyright (C) 2015-2017  Ricardo Bánffy
+;; Copyright (C) 2015-2020  Ricardo Bánffy
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
