@@ -12,6 +12,9 @@ https://commons.wikimedia.org/w/index.php?curid=104015*
 Make your Emacs sound like a proper typewriter. Extremely useful if you
 have a puny, silent, rubberish, non-clicky keyboard.
 
+"I noticed this in the Spacemacs config and have it set up for occasional use.
+Makes writing documentation feel more important." -- mcguire on Hacker News
+
 The sound of the typewriter moving and typing was recorded by a person
 nicknamed "secretmojo" and is available on
 https://www.freesound.org/people/secretmojo/sounds/224012/ and the bell
